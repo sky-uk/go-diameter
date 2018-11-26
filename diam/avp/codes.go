@@ -199,7 +199,6 @@ const (
 	EventChargingTimeStamp                     = 1258
 	EventTimestamp                             = 55
 	EventTrigger                               = 1006
-	EventType                                  = 354
 	EventType                                  = 823
 	ExperimentalResult                         = 297
 	ExperimentalResultCode                     = 298

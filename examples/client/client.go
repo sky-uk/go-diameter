@@ -37,12 +37,12 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/fiorix/go-diameter/diam"
-	"github.com/fiorix/go-diameter/diam/avp"
-	"github.com/fiorix/go-diameter/diam/datatype"
-	"github.com/fiorix/go-diameter/diam/dict"
-	"github.com/fiorix/go-diameter/diam/sm"
-	"github.com/fiorix/go-diameter/diam/sm/smpeer"
+	"github.com/sky-uk/go-diameter/diam"
+	"github.com/sky-uk/go-diameter/diam/avp"
+	"github.com/sky-uk/go-diameter/diam/datatype"
+	"github.com/sky-uk/go-diameter/diam/dict"
+	"github.com/sky-uk/go-diameter/diam/sm"
+	"github.com/sky-uk/go-diameter/diam/sm/smpeer"
 )
 
 func init() {

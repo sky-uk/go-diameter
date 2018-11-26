@@ -8,7 +8,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/fiorix/go-diameter/diam"
+	"github.com/sky-uk/go-diameter/diam"
 )
 
 var (
