@@ -8,7 +8,6 @@ package diam
 
 // Diameter command codes.
 const (
-	AA                     = 265
 	AbortSession           = 274
 	Accounting             = 271
 	CapabilitiesExchange   = 257
@@ -24,8 +23,6 @@ const (
 
 // Short Command Names
 const (
-	AAA = "AAA"
-	AAR = "AAR"
 	ACA = "ACA"
 	ACR = "ACR"
 	ASA = "ASA"

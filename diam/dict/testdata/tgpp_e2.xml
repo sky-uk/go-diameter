@@ -39,7 +39,7 @@
                 <rule avp="AF-Application-Identifier" required="false" max="1" />
                 <rule avp="Requested-Information" required="false" max="1" />
                 <rule avp="Proxy-Info" required="false" />
-                <rule avp="Route-Record" required="false" />                
+                <rule avp="Route-Record" required="false" />
             </request>
 
             <!--
@@ -81,7 +81,7 @@
                 <rule avp="AVP" required="false"/>
                 <rule avp="Failed-AVP" required="false" max="1" />
                 <rule avp="Proxy-Info" required="false" />
-                <rule avp="Route-Record" required="false" />                                
+                <rule avp="Route-Record" required="false" />
             </answer>
          </command>
 
@@ -104,7 +104,7 @@
                 *[Event-Type]
                 *[ AVP ]
                 *[ Proxy-Info ]
-                *[ Route-Record ]           
+                *[ Route-Record ]
             -->
             <request>
                 <rule avp="Session-Id" required="true" max="1" />
@@ -138,7 +138,7 @@
                 *[ AVP ]
                 *[ Failed-AVP ]
                 *[ Proxy-Info ]
-                *[ Route-Record ]           
+                *[ Route-Record ]
             -->
             <answer>
                 <rule avp="Session-Id" required="true" max="1" />
@@ -181,7 +181,7 @@
                 [IP-Connectivity-Status]
                 *[ AVP ]
                 *[ Proxy-Info ]
-                *[ Route-Record ]           
+                *[ Route-Record ]
             -->
             <request>
                 <rule avp="Session-Id" required="true" max="1" />
@@ -220,7 +220,7 @@
                 *[ AVP ]
                 *[ Failed-AVP ]
                 *[ Proxy-Info ]
-                *[ Route-Record ]           
+                *[ Route-Record ]
             -->
             <answer>
                 <rule avp="Session-Id" required="true" max="1" />
@@ -255,7 +255,7 @@
         <avp name="Terminal-Type" code="352" vendor-id="13019" must="V" may="M" may-encrypt="Y">
             <data type="OctetString"/>
         </avp>
-        
+
         <avp name="Requested-Information" code="353" vendor-id="13019" must="V" must-not="M" may-encrypt="Y">
             <data type="Enumerated">
                 <item code="0" name="NASS-USER-ID"/>
@@ -406,8 +406,16 @@
                 <item code="1" name="Unsubscribe"/>
             </data>
         </avp>
-        
+
         <avp name="TGPP-User-Location-Info" code="22" vendor-id="10415" must="V" must-not="M" may-encrypt="Y">
+            <data type="OctetString"/>
+        </avp>
+
+        <avp name="Framed-IP-Address" code="8" may="M" must-not="V" may-encrypt="Y">
+            <data type="OctetString"/>
+        </avp>
+
+        <avp name="Framed-IPv6-Prefix" code="97" may="M" must-not="V" may-encrypt="Y">
             <data type="OctetString"/>
         </avp>
 
