@@ -1,4 +1,4 @@
-module github.com/sky-uk/go-diameter
+module github.com/sky-uk/go-diameter/v3
 
 go 1.13
 
