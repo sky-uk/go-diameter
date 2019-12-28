@@ -9,11 +9,9 @@ package diam
 // Diameter application IDs.
 const (
 	BASE_APP_ID                = 0
-	NETWORK_ACCESS_APP_ID      = 1
 	BASE_ACCOUNTING_APP_ID     = 3
 	CHARGING_CONTROL_APP_ID    = 4
-	TGPP_APP_ID                = 4
+	TGPP_E2_APP_ID             = 16777231
 	GX_CHARGING_CONTROL_APP_ID = 16777238
-	TGPP_S6A_APP_ID            = 16777251
-	TGPP_SWX_APP_ID            = 16777265
+	DIAMETER_SY_APP_ID         = 16777302
 )

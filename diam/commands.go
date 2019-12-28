@@ -8,59 +8,44 @@ package diam
 
 // Diameter command codes.
 const (
-	AA                        = 265
-	AbortSession              = 274
-	Accounting                = 271
-	AuthenticationInformation = 318
-	CancelLocation            = 317
-	CapabilitiesExchange      = 257
-	CreditControl             = 272
-	DeviceWatchdog            = 280
-	DisconnectPeer            = 282
-	MultimediaAuthentication  = 303
-	Notify                    = 323
-	PurgeUE                   = 321
-	ReAuth                    = 258
-	Reset                     = 322
-	ServerAssignment          = 301
-	SessionTermination        = 275
-	UpdateLocation            = 316
+	AbortSession           = 274
+	Accounting             = 271
+	CapabilitiesExchange   = 257
+	CreditControl          = 272
+	DeviceWatchdog         = 280
+	DisconnectPeer         = 282
+	PushNotification       = 309
+	ReAuth                 = 258
+	SessionTermination     = 275
+	SpendingLimit          = 8388635
+	SubscribeNotifications = 308
+	UserData               = 306
 )
 
 // Short Command Names
 const (
-	AAA = "AAA"
-	AAR = "AAR"
 	ACA = "ACA"
 	ACR = "ACR"
-	AIA = "AIA"
-	AIR = "AIR"
 	ASA = "ASA"
 	ASR = "ASR"
 	CCA = "CCA"
 	CCR = "CCR"
 	CEA = "CEA"
 	CER = "CER"
-	CLA = "CLA"
-	CLR = "CLR"
 	DPA = "DPA"
 	DPR = "DPR"
 	DWA = "DWA"
 	DWR = "DWR"
-	MAA = "MAA"
-	MAR = "MAR"
-	NOA = "NOA"
-	NOR = "NOR"
-	PUA = "PUA"
-	PUR = "PUR"
+	PNA = "PNA"
+	PNR = "PNR"
 	RAA = "RAA"
 	RAR = "RAR"
-	RSA = "RSA"
-	RSR = "RSR"
-	SAA = "SAA"
-	SAR = "SAR"
+	SLA = "SLA"
+	SLR = "SLR"
+	SNA = "SNA"
+	SNR = "SNR"
 	STA = "STA"
 	STR = "STR"
-	ULA = "ULA"
-	ULR = "ULR"
+	UDA = "UDA"
+	UDR = "UDR"
 )
