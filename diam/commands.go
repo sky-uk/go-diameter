@@ -17,6 +17,7 @@ const (
 	PushNotification       = 309
 	ReAuth                 = 258
 	SessionTermination     = 275
+	SpendingLimit          = 8388635
 	SubscribeNotifications = 308
 	UserData               = 306
 )
@@ -39,6 +40,8 @@ const (
 	PNR = "PNR"
 	RAA = "RAA"
 	RAR = "RAR"
+	SLA = "SLA"
+	SLR = "SLR"
 	SNA = "SNA"
 	SNR = "SNR"
 	STA = "STA"

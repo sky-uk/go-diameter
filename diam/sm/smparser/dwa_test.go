@@ -7,9 +7,9 @@ package smparser
 import (
 	"testing"
 
-	"github.com/sky-uk/go-diameter/diam"
-	"github.com/sky-uk/go-diameter/diam/avp"
-	"github.com/sky-uk/go-diameter/diam/datatype"
+	"github.com/sky-uk/go-diameter/v4/diam"
+	"github.com/sky-uk/go-diameter/v4/diam/avp"
+	"github.com/sky-uk/go-diameter/v4/diam/datatype"
 )
 
 func TestDWA(t *testing.T) {

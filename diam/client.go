@@ -11,7 +11,7 @@ import (
 	"net"
 	"time"
 
-	"github.com/sky-uk/go-diameter/diam/dict"
+	"github.com/sky-uk/go-diameter/v4/diam/dict"
 )
 
 // DialNetwork connects to the peer pointed to by network & addr and returns the Conn that

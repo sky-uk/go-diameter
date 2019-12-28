@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sky-uk/go-diameter/examples/s6a_proxy/protos"
-	"github.com/sky-uk/go-diameter/examples/s6a_proxy/service"
+	"github.com/sky-uk/go-diameter/v4/examples/s6a_proxy/protos"
+	"github.com/sky-uk/go-diameter/v4/examples/s6a_proxy/service"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )

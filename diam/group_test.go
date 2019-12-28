@@ -9,9 +9,9 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/sky-uk/go-diameter/diam/avp"
-	"github.com/sky-uk/go-diameter/diam/datatype"
-	"github.com/sky-uk/go-diameter/diam/dict"
+	"github.com/sky-uk/go-diameter/v4/diam/avp"
+	"github.com/sky-uk/go-diameter/v4/diam/datatype"
+	"github.com/sky-uk/go-diameter/v4/diam/dict"
 )
 
 // testGroupedAVP is a Vendor-Specific-Application-Id Grouped AVP.

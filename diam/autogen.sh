@@ -137,9 +137,10 @@ func init() {
 		{"Base", baseXML},
 		{"Credit Control", creditcontrolXML},
 		{"Gx Charging Control", gxcreditcontrolXML},
-	/*	{"Network Access Server", networkaccessserverXML}, */
-	/*	{"TGPP", tgpprorfXML},  */
-	/*	{"TGPP_S6a", tgpps6aXML}, */
+		/*{"Network Access Server", networkaccessserverXML},*/
+		/*{"TGPP", tgpprorfXML},*/
+		/*{"TGPP_S6a", tgpps6aXML},*/
+		/*{"TGPP_Swx", tgppswxXML},*/
 		{"TGPP_CLF", tgppe2XML},
 	}
 	var err error

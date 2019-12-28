@@ -5,9 +5,9 @@
 package sm
 
 import (
-	"github.com/sky-uk/go-diameter/diam"
-	"github.com/sky-uk/go-diameter/diam/sm/smparser"
-	"github.com/sky-uk/go-diameter/diam/sm/smpeer"
+	"github.com/sky-uk/go-diameter/v4/diam"
+	"github.com/sky-uk/go-diameter/v4/diam/sm/smparser"
+	"github.com/sky-uk/go-diameter/v4/diam/sm/smpeer"
 )
 
 // handleCEA handles Capabilities-Exchange-Answer messages.

@@ -3,7 +3,7 @@
 package service
 
 import (
-	"github.com/sky-uk/go-diameter/diam/datatype"
+	"github.com/sky-uk/go-diameter/v4/diam/datatype"
 )
 
 // Definitions for AIA, see sample below:

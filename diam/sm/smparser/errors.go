@@ -8,7 +8,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/sky-uk/go-diameter/diam"
+	"github.com/sky-uk/go-diameter/v4/diam"
 )
 
 var (

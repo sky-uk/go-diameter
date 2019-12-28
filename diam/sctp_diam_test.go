@@ -11,8 +11,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sky-uk/go-diameter/diam"
-	"github.com/sky-uk/go-diameter/diam/diamtest"
+	"github.com/sky-uk/go-diameter/v4/diam"
+	"github.com/sky-uk/go-diameter/v4/diam/diamtest"
 )
 
 func TestCapabilitiesExchangeSCTP(t *testing.T) {

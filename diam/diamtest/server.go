@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/sky-uk/go-diameter/diam"
-	"github.com/sky-uk/go-diameter/diam/dict"
+	"github.com/sky-uk/go-diameter/v4/diam"
+	"github.com/sky-uk/go-diameter/v4/diam/dict"
 )
 
 // A Server is a Diameter server listening on a system-chosen port on the

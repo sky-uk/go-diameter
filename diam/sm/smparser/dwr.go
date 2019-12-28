@@ -5,8 +5,8 @@
 package smparser
 
 import (
-	"github.com/sky-uk/go-diameter/diam"
-	"github.com/sky-uk/go-diameter/diam/datatype"
+	"github.com/sky-uk/go-diameter/v4/diam"
+	"github.com/sky-uk/go-diameter/v4/diam/datatype"
 )
 
 // DWR is a Device-Watchdog-Request message.

@@ -8,11 +8,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sky-uk/go-diameter/diam"
-	"github.com/sky-uk/go-diameter/diam/avp"
-	"github.com/sky-uk/go-diameter/diam/datatype"
-	"github.com/sky-uk/go-diameter/diam/diamtest"
-	"github.com/sky-uk/go-diameter/diam/dict"
+	"github.com/sky-uk/go-diameter/v4/diam"
+	"github.com/sky-uk/go-diameter/v4/diam/avp"
+	"github.com/sky-uk/go-diameter/v4/diam/datatype"
+	"github.com/sky-uk/go-diameter/v4/diam/diamtest"
+	"github.com/sky-uk/go-diameter/v4/diam/dict"
 )
 
 func testResultCode(m *diam.Message, want uint32) bool {

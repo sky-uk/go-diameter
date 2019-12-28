@@ -7,8 +7,8 @@ package smparser
 import (
 	"fmt"
 
-	"github.com/sky-uk/go-diameter/diam"
-	"github.com/sky-uk/go-diameter/diam/datatype"
+	"github.com/sky-uk/go-diameter/v4/diam"
+	"github.com/sky-uk/go-diameter/v4/diam/datatype"
 )
 
 // CEA is a Capabilities-Exchange-Answer message.

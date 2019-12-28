@@ -10,12 +10,13 @@ import (
 	"fmt"
 	"io"
 	"math/rand"
+	"net"
 	"sync"
 	"time"
 
-	"github.com/sky-uk/go-diameter/diam/avp"
-	"github.com/sky-uk/go-diameter/diam/datatype"
-	"github.com/sky-uk/go-diameter/diam/dict"
+	"github.com/sky-uk/go-diameter/v4/diam/avp"
+	"github.com/sky-uk/go-diameter/v4/diam/datatype"
+	"github.com/sky-uk/go-diameter/v4/diam/dict"
 )
 
 // MessageBufferLength is the default buffer length for Diameter messages.
@@ -256,15 +257,25 @@ func putWriterBuffer(b *bytes.Buffer) {
 // WriteTo serializes the Message and writes into the writer.
 func (m *Message) WriteTo(writer io.Writer) (int64, error) {
 	n, err := m.WriteToStream(writer, m.stream)
-	if err != nil {
-		return 0, err
-	}
+	return int64(n), err
+}
+
+// WriteToStream serializes the Message and writes into the writer with given retries if needed
+func (m *Message) WriteToWithRetry(writer io.Writer, retries uint) (int64, error) {
+	n, err := m.WriteToStreamWithRetry(writer, m.stream, retries)
 	return int64(n), err
 }
 
 // WriteToStream serializes the Message and writes into the writer
 // If writer implements MultistreamWriter, writes the message into specified stream
 func (m *Message) WriteToStream(writer io.Writer, stream uint) (n int, err error) {
+	return m.WriteToStreamWithRetry(writer, stream, 0)
+}
+
+// WriteToStreamWithRetry serializes the Message and writes into the writer with specified number of retries
+// if needed
+// If writer implements MultistreamWriter, writes the message into specified stream
+func (m *Message) WriteToStreamWithRetry(writer io.Writer, stream, retries uint) (n int, err error) {
 	l := m.Len()
 	buf := newWriterBuffer(l)
 	defer putWriterBuffer(buf)
@@ -274,9 +285,45 @@ func (m *Message) WriteToStream(writer io.Writer, stream uint) (n int, err error
 	}
 	switch w := writer.(type) {
 	case MultistreamWriter:
-		return w.WriteStream(b, stream)
+		return writeStreamRetry(w, b, stream, retries)
 	default:
-		return writer.Write(b)
+		return writeRetry(writer, b, retries)
+	}
+}
+
+func writeRetry(w io.Writer, b []byte, retries uint) (n int, err error) {
+	var wn int
+	for {
+		wn, err = w.Write(b)
+		n += wn
+		if err == nil || retries == 0 {
+			return
+		}
+		if nerr, isNetErr := err.(net.Error); !(isNetErr && nerr.Temporary()) {
+			return
+		}
+		if wn > 0 {
+			b = b[wn:]
+		}
+		retries--
+	}
+}
+
+func writeStreamRetry(w MultistreamWriter, b []byte, stream, retries uint) (n int, err error) {
+	var wn int
+	for {
+		wn, err = w.WriteStream(b, stream)
+		n += wn
+		if err == nil || retries == 0 {
+			return
+		}
+		if nerr, isNetErr := err.(net.Error); !(isNetErr && nerr.Temporary()) {
+			return
+		}
+		if wn > 0 {
+			b = b[wn:]
+		}
+		retries--
 	}
 }
 
@@ -432,8 +479,8 @@ func (m *Message) FindAVPsWithPath(path []interface{}, vendorID uint32) ([]*AVP,
 	return avpsWithPath(m.AVP, pathCodes), nil
 }
 
-// Answer creates an answer for the current Message with an embedded
-// Result-Code AVP.
+// Answer creates an answer for the current Message
+// with optinal ResultCode AVP
 func (m *Message) Answer(resultCode uint32) *Message {
 	nm := NewMessage(
 		m.Header.CommandCode,
@@ -443,7 +490,9 @@ func (m *Message) Answer(resultCode uint32) *Message {
 		m.Header.EndToEndID,
 		m.Dictionary(),
 	)
-	nm.NewAVP(avp.ResultCode, avp.Mbit, 0, datatype.Unsigned32(resultCode))
+	if resultCode != 0 {
+		nm.NewAVP(avp.ResultCode, avp.Mbit, 0, datatype.Unsigned32(resultCode))
+	}
 	nm.stream = m.stream
 	return nm
 }

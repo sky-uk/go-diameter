@@ -8,12 +8,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sky-uk/go-diameter/diam"
-	"github.com/sky-uk/go-diameter/diam/avp"
-	"github.com/sky-uk/go-diameter/diam/datatype"
-	"github.com/sky-uk/go-diameter/diam/diamtest"
-	"github.com/sky-uk/go-diameter/diam/dict"
-	"github.com/sky-uk/go-diameter/diam/sm/smpeer"
+	"github.com/sky-uk/go-diameter/v4/diam"
+	"github.com/sky-uk/go-diameter/v4/diam/avp"
+	"github.com/sky-uk/go-diameter/v4/diam/datatype"
+	"github.com/sky-uk/go-diameter/v4/diam/diamtest"
+	"github.com/sky-uk/go-diameter/v4/diam/dict"
+	"github.com/sky-uk/go-diameter/v4/diam/sm/smpeer"
 )
 
 // These tests use dictionary, settings and functions from sm_test.go.

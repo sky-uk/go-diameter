@@ -142,6 +142,7 @@ const (
 	RequestedServiceUnit              = 437
 	RestrictionFilterRule             = 438
 	ResultCode                        = 268
+	RevalidationTime                  = 1042
 	RouteRecord                       = 282
 	RuleActivationTime                = 1043
 	RuleDeactivationTime              = 1044
@@ -155,6 +156,7 @@ const (
 	SessionID                         = 263
 	SessionServerFailover             = 271
 	SessionTimeout                    = 27
+	SLRequestType                     = 2904
 	SubscriptionID                    = 443
 	SubscriptionIDData                = 444
 	SubscriptionIDType                = 450
@@ -164,6 +166,8 @@ const (
 	TariffTimeChange                  = 451
 	TerminalType                      = 352
 	TerminationCause                  = 295
+	TFTFilter                         = 1012
+	TFTPacketFilterInformation        = 1013
 	TGPPGGSNAddress                   = 7
 	TGPPMSTimeZone                    = 23
 	TGPPSGSNAddress                   = 6

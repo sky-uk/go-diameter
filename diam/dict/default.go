@@ -20,9 +20,10 @@ func init() {
 		{"Base", baseXML},
 		{"Credit Control", creditcontrolXML},
 		{"Gx Charging Control", gxcreditcontrolXML},
-		/*	{"Network Access Server", networkaccessserverXML}, */
-		/*	{"TGPP", tgpprorfXML},  */
-		/*	{"TGPP_S6a", tgpps6aXML}, */
+		/*{"Network Access Server", networkaccessserverXML},*/
+		/*{"TGPP", tgpprorfXML},*/
+		/*{"TGPP_S6a", tgpps6aXML},*/
+		/*{"TGPP_Swx", tgppswxXML},*/
 		{"TGPP_CLF", tgppe2XML},
 	}
 	var err error
@@ -1021,6 +1022,56 @@ var creditcontrolXML = `<?xml version="1.0" encoding="UTF-8"?>
 	</application>
 </diameter>`
 
+var diametersyXML = `<?xml version="1.0" encoding="UTF-8"?>
+<diameter>
+
+	<application id="16777302" type="auth" name="Diameter Sy">
+		<!-- Diameter Credit Control Application -->
+		<!-- http://tools.ietf.org/html/rfc4006 -->
+
+		<command code="8388635" short="SL" name="Spending-Limit">
+			<request>
+				<!-- http://tools.ietf.org/html/rfc4006#section-3.1 -->
+				<rule avp="Session-Id" required="true" max="1"/>
+				<rule avp="Auth-Application-Id" required="true" max="1"/>
+				<rule avp="Origin-Host" required="true" max="1"/>
+				<rule avp="Origin-Realm" required="true" max="1"/>
+				<rule avp="Destination-Realm" required="true" max="1"/>
+				<rule avp="SL-Request-Type" required="true" max="1"/>
+				<rule avp="Destination-Host" required="false" max="1"/>
+				<rule avp="Origin-State-Id" required="false" max="1"/>
+				<rule avp="Subscription-Id" required="false" max="1"/>
+				<rule avp="Policy-Counter-Identifier" required="false" max="1"/>
+				<rule avp="Proxy-Info" required="false" max="1"/>
+				<rule avp="Route-Record" required="false" max="1"/>
+				<rule avp="Service-Information" required="false" max="1"/>
+			</request>
+			<answer>
+				<!-- http://tools.ietf.org/html/rfc4006#section-3.2 -->
+				<rule avp="Session-Id" required="true" max="1"/>
+				<rule avp="Result-Code" required="true" max="1"/>
+				<rule avp="Origin-Host" required="true" max="1"/>
+				<rule avp="Origin-Realm" required="true" max="1"/>
+				<rule avp="Origin-State-Id" required="false" max="1"/>
+				<rule avp="Redirect-Host" required="false" max="1"/>
+				<rule avp="Redirect-Host-Usage" required="false" max="1"/>
+				<rule avp="Redirect-Max-Cache-Time" required="false" max="1"/>
+				<rule avp="Proxy-Info" required="false" max="1"/>
+				<rule avp="Route-Record" required="false" max="1"/>
+				<rule avp="Failed-AVP" required="false" max="1"/>
+			</answer>
+		</command>
+
+		<avp name="SL-Request-Type" code="2904" must="M" may="P" must-not="V" may-encrypt="-">
+			<data type="Enumerated">
+				<item code="0" name="INITIAL_REQUEST"/>
+				<item code="1" name="INTERMEDIATE_REQUEST"/>
+			</data>
+		</avp>
+		
+    </application>
+</diameter>`
+
 var gxcreditcontrolXML = `<?xml version="1.0" encoding="UTF-8"?>
 <diameter>
 
@@ -1065,7 +1116,7 @@ var gxcreditcontrolXML = `<?xml version="1.0" encoding="UTF-8"?>
                 <rule avp="TGPP-Selection-Mode" required="false" max="1"/>
                 <rule avp="QoS-Information" required="false" max="1"/>
                 <rule avp="TGPP-SGSN-MCC-MNC" required="false" max="1"/>
-                <rule avp="TGPP-User-Location-Info" required="false" max="1"/> 
+                <rule avp="TGPP-User-Location-Info" required="false" max="1"/>
             </request>
             <answer>
                 <!-- 3GPP 29.212 Section 5.6.3 -->
@@ -1080,8 +1131,39 @@ var gxcreditcontrolXML = `<?xml version="1.0" encoding="UTF-8"?>
                 <rule avp="Route-Record" required="false" max="1"/>
                 <rule avp="Failed-AVP" required="false" max="1"/>
                 <rule avp="Charging-Rule-Install" required="false"/>
+                <rule avp="Charging-Rule-Remove" required="false"/>
                 <rule avp="Usage-Monitoring-Information" required="false"/>
                 <rule avp="Event-Trigger" required="false"/>
+                <rule avp="Revalidation-Time" required="false"/>
+            </answer>
+        </command>
+
+        <command code="258" short="RA" name="Re-Auth">
+            <request>
+                <rule avp="Session-Id" required="true" max="1"/>
+                <rule avp="Origin-Host" required="true" max="1"/>
+                <rule avp="Origin-Realm" required="true" max="1"/>
+                <rule avp="Destination-Realm" required="true" max="1"/>
+                <rule avp="Destination-Host" required="true" max="1"/>
+                <rule avp="Auth-Application-Id" required="true" max="1"/>
+                <rule avp="Re-Auth-Request-Type" required="true" max="1"/>
+                <rule avp="QoS-Information" required="false" max="1"/>
+                <rule avp="Origin-State-Id" required="false" max="1"/>
+                <rule avp="Proxy-Info" required="false"/>
+                <rule avp="Route-Record" required="false"/>
+                <rule avp="Event-Trigger" required="false"/>
+                <rule avp="Revalidation-Time" required="false"/>
+            </request>
+            <answer>
+                <rule avp="Session-Id" required="true" max="1"/>
+                <rule avp="Result-Code" required="true" max="1"/>
+                <rule avp="Origin-Host" required="true" max="1"/>
+                <rule avp="Origin-Realm" required="true" max="1"/>
+                <rule avp="Origin-State-Id" required="false" max="1"/>
+                <rule avp="Error-Message" required="false" max="1"/>
+                <rule avp="Error-Reporting-Host" required="false" max="1"/>
+                <rule avp="Failed-AVP" required="false" max="1"/>
+                <rule avp="Proxy-Info" required="false"/>
             </answer>
         </command>
 
@@ -1104,9 +1186,11 @@ var gxcreditcontrolXML = `<?xml version="1.0" encoding="UTF-8"?>
         </avp>
 
         <avp name="Charging-Rule-Remove" code="1002" must="V,M" may="P" must-not="-" may-encrypt="Y" vendor-id="10415">
+            <!-- 3GPP 29.212 Section 5.3.3 -->
             <data type="Grouped">
                 <rule avp="Charging-Rule-Name" required="false"/>
                 <rule avp="Charging-Rule-Base-Name" required="false"/>
+                <!-- *[ AVP ]-->
             </data>
         </avp>
 
@@ -1161,12 +1245,18 @@ var gxcreditcontrolXML = `<?xml version="1.0" encoding="UTF-8"?>
                 <item code="23" name="RESOURCE_MODIFICATION_REQUEST"/>
                 <item code="24" name="PGW_TRACE_CONTROL"/>
                 <item code="25" name="UE_TIME_ZONE_CHANGE"/>
-                <item code="26" name="USAGE_REPORT"/>
-                <item code="27" name="TAI_CHANGE"/>
-                <item code="28" name="ECGI_CHANGE"/>
-                <item code="29" name="CHARGING_CORRELATION_EXCHANGE"/>
+                <item code="26" name="TAI_CHANGE"/>
+                <item code="27" name="ECGI_CHANGE"/>
+                <item code="28" name="CHARGING_CORRELATION_EXCHANGE"/>
+                <item code="29" name="APN-AMBR_MODIFICATION_FAILURE"/>
                 <item code="30" name="USER_CSG_INFORMATION_CHANGE"/>
+                <item code="33" name="USAGE_REPORT"/>
             </data>
+        </avp>
+
+        <avp name="Revalidation-Time" code="1042" must="M,V" may="P" may-encrypt="y" vendor-id="10415">
+            <!-- 3GPP 29.212  Section 5.3.41 -->
+            <data type="Time"/>
         </avp>
 
         <avp name="Precedence" code="1010" must="M,V" may="P" may-encrypt="y" vendor-id="10415">
@@ -1216,16 +1306,16 @@ var gxcreditcontrolXML = `<?xml version="1.0" encoding="UTF-8"?>
         </avp>
 
         <avp name="Flow-Information" code="1058" must="V" must-not="M" may="P" may-encryp="y" vendor-id="10415">
-          <!-- 3GPP 29.212 Section 5.3.53 -->
-          <data type="Grouped">
-            <rule avp="Flow-Description" required="false" max="1"/>
-            <rule avp="Packet-Filter-Identifier" required="false" max="1"/>
-            <rule avp="Packet-Filter-Usage" required="false" max="1"/>
-            <rule avp="ToS-Traffic-Class" required="false" max="1"/>
-            <rule avp="Security-Parameter-Index" required="false" max="1"/>
-            <rule avp="Flow-Label" required="false" max="1"/>
-            <rule avp="Flow-Direction" required="false" max="1"/>
-          </data>
+            <!-- 3GPP 29.212 Section 5.3.53 -->
+            <data type="Grouped">
+                <rule avp="Flow-Description" required="false" max="1"/>
+                <rule avp="Packet-Filter-Identifier" required="false" max="1"/>
+                <rule avp="Packet-Filter-Usage" required="false" max="1"/>
+                <rule avp="ToS-Traffic-Class" required="false" max="1"/>
+                <rule avp="Security-Parameter-Index" required="false" max="1"/>
+                <rule avp="Flow-Label" required="false" max="1"/>
+                <rule avp="Flow-Direction" required="false" max="1"/>
+            </data>
         </avp>
 
         <avp name="Packet-Filter-Identifier" code="1060" must="V" must-not="M" may="P" may-encrypt="y" vendor-id="10415">
@@ -1241,10 +1331,10 @@ var gxcreditcontrolXML = `<?xml version="1.0" encoding="UTF-8"?>
         <avp name="Usage-Monitoring-Information" code="1067" must="V" may="P" must-not="M,V" may-encrypt="y" vendor-id="10415">
             <!-- 3GPP 29.212 -->
             <data type="Grouped">
-              <rule avp="Monitoring-Key" required="false" max="1"/>
-              <rule avp="Granted-Service-Unit" required="false" max="2"/>
-              <rule avp="Used-Service-Unit" required="false" max="2"/>
-              <rule avp="Usage-Monitoring-Level" required="false" max="1"/>
+                <rule avp="Monitoring-Key" required="false" max="1"/>
+                <rule avp="Granted-Service-Unit" required="false" max="2"/>
+                <rule avp="Used-Service-Unit" required="false" max="2"/>
+                <rule avp="Usage-Monitoring-Level" required="false" max="1"/>
             </data>
         </avp>
 
@@ -1365,6 +1455,24 @@ var gxcreditcontrolXML = `<?xml version="1.0" encoding="UTF-8"?>
         <avp name="TGPP-MS-TimeZone" code="23" must="V" may="P" must-not="M" may-encrypt="y" vendor-id="10415">
             <!-- 3GPP 29.061 Table 9a -->
             <data type="OctetString"/>
+        </avp>
+
+        <avp name="TFT-Filter" code="1012" must="M,V" may="P" may-encrypt="y" vendor-id="10415">
+            <!-- 3GPP 29.212 5.3.13-->
+            <data type="IPFilterRule"/>
+        </avp>
+
+        <avp name="TFT-Packet-Filter-Information" code="1013" must="M,V" may="P" may-encrypt="y" vendor-id="10415">
+            <!-- 3GPP 29.212 5.3.14-->
+            <data type="Grouped">
+                <rule avp="Precedence" required="false" max="1"/>
+                <rule avp="TFT-Filter" required="false" max="1"/>
+                <rule avp="ToS-Traffic-Class" required="false" max="1"/>
+                <rule avp="Security-Parameter-Index" required="false" max="1"/>
+                <rule avp="Flow-Label" required="false" max="1"/>
+                <rule avp="Flow-Direction" required="false" max="1"/>
+                <!-- *[ AVP ]-->
+            </data>
         </avp>
 
     </application>
