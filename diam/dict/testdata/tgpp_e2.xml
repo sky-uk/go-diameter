@@ -419,7 +419,7 @@
             <data type="OctetString"/>
         </avp>
 
-        <avp name="Address-Realm" code="301" vendor-id="13015" may="M,V" may-encrypt="Y">
+        <avp name="Address-Realm" code="301" vendor-id="13019" may="M,V" may-encrypt="Y">
             <data type="OctetString"/>
         </avp>
 

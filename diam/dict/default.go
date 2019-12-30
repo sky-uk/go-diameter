@@ -1194,7 +1194,6 @@ var gxcreditcontrolXML = `<?xml version="1.0" encoding="UTF-8"?>
             </data>
         </avp>
 
-
         <avp name="Charging-Rule-Definition" code="1003" must="M,V" may="P" may-encrypt="Y" vendor-id="10415">
             <!-- 3GPP 29.212 -->
             <data type="Grouped">
@@ -1899,7 +1898,7 @@ var tgppe2XML = `<?xml version="1.0" encoding="UTF-8"?>
             <data type="OctetString"/>
         </avp>
 
-        <avp name="Address-Realm" code="301" vendor-id="13015" may="M,V" may-encrypt="Y">
+        <avp name="Address-Realm" code="301" vendor-id="13019" may="M,V" may-encrypt="Y">
             <data type="OctetString"/>
         </avp>
 
