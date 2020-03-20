@@ -588,6 +588,7 @@ func (sh serverHandler) ServeDIAM(w Conn, m *Message) {
 // If srv.Network is blank, "tcp" is used
 // If srv.Addr is blank, ":3868" is used.
 func (srv *Server) ListenAndServe() error {
+    log.Println("diam: ListenAndServer()")
 	network := srv.Network
 	if len(network) == 0 {
 		network = "tcp"
@@ -610,6 +611,7 @@ func (srv *Server) Serve(l net.Listener) error {
 	defer l.Close()
 	var tempDelay time.Duration // how long to sleep on accept failure
 	for {
+        log.Println("diam: Serve: l.Accept()")
 		rw, e := l.Accept()
 		if e != nil {
 			if ne, ok := e.(net.Error); ok && ne.Temporary() {
